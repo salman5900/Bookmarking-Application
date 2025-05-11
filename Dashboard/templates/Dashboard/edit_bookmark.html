@@ -15,6 +15,9 @@
     </form>
 
     <p>
+        <div class="edit-links">
         <a href="{% url 'Dashboard:dashboard' %}">← Back to Dashboard</a>
+        <a href="{% url "Dashboard:delete_bookmark" bookmark.slug %}">← Delete Bookmark</a>
+        </div>
     </p>
 {% endblock %}

@@ -11,7 +11,7 @@ body {
     display: flex;             /* Use flexbox layout for centering */
     justify-content: center;   /* Horizontally center the main container */
     align-items: center;       /* Vertically center the main container (optional) */
-    height:88vh;             /* Make sure the body takes full viewport height */
+    height:93vh;             /* Make sure the body takes full viewport height */
     margin: 0;
 
 }
@@ -89,6 +89,8 @@ main{
     gap: 10px;
     width: 900px;
 }
+
+
 
 /* Form styling */
 form {
@@ -273,3 +275,8 @@ form textarea {
     box-sizing: border-box;
 }
 
+.edit-links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

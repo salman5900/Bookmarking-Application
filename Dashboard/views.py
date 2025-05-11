@@ -39,3 +39,8 @@ def add_bookmark(request):
         form = forms.BookmarkForm()
     
     return render(request, 'Dashboard/add_bookmark.html', {'form': form})
+
+def delete_bookmark(request, slug):
+    bookmark = Bookmark.objects.get(slug=slug, user=request.user)
+    bookmark.delete()
+    return redirect('Dashboard:dashboard')
