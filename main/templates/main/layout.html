@@ -20,7 +20,7 @@
     {% if user.is_authenticated %}
     <div class="nav-links">
         <a href="{% url "Dashboard:dashboard" %}">Dashboard</a>
-        <a href="{% url "main:about" %}">Files</a>
+        <a href="{% url "Dashboard:files" %}">Files</a>
         <a href="{% url "Dashboard:add_bookmark" %}">Add Bookmark</a> 
     </div>
     <a href="{% url 'users:logout' %}">

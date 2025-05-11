@@ -4,6 +4,8 @@ from urllib.parse import urlparse
 from django.contrib.auth.decorators import login_required
 from . import forms
 # Create your views here.
+
+@login_required
 def dashboard(request):
     bookmarks = bookmarks = Bookmark.objects.filter(user=request.user).order_by('-created_at')
 
@@ -13,6 +15,7 @@ def dashboard(request):
         bm.favicon_url = f"https://www.google.com/s2/favicons?sz=64&domain={domain}"
     return render(request, 'Dashboard/dashboard.html', {'bookmarks': bookmarks})
 
+@login_required
 def edit_bookmark(request, slug):
     bookmark = Bookmark.objects.get(slug=slug)
     if request.method == "POST":
@@ -40,7 +43,11 @@ def add_bookmark(request):
     
     return render(request, 'Dashboard/add_bookmark.html', {'form': form})
 
+@login_required
 def delete_bookmark(request, slug):
     bookmark = Bookmark.objects.get(slug=slug, user=request.user)
     bookmark.delete()
     return redirect('Dashboard:dashboard')
+
+def files(request):
+    return render(request, 'Dashboard/files.html')

@@ -280,3 +280,15 @@ form textarea {
     flex-direction: column;
     gap: 10px;
 }
+
+#add-bookmark-link {
+    color: #007BFF;           /* Bootstrap-like blue */
+    text-decoration: none;    /* Remove underline */
+    transition: transform 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+
+#add-bookmark-link:hover {
+    color: #0056b3;           /* Darker blue on hover */
+    transform: scale(1.1);    /* Slight pop animation */
+}

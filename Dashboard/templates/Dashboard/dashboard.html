@@ -1,12 +1,10 @@
 {% extends "main/layout.html" %}
 
-{% block title %}
-    Dashboard
-{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-
-    <section class="dashboard-cln"> 
+<section class="dashboard-cln">
+    
     <div class="dashboard">
         <h1>Dashboard</h1>
     </div>
@@ -16,24 +14,25 @@
     </div>
 
     <div class="dashboard-content">
-        {% for bookmark in bookmarks %}
-        <div class="file-box" onclick="window.location.href='{% url "Dashboard:edit_bookmark" bookmark.slug %}'">
-            <div class="file-logo"><img src="
-                {{ bookmark.favicon_url }}"  alt="Logo" width="32" height="32">
-            </div>
-            <div class="file-details">
-                <h3>{{ bookmark.title }}</h3>
-                <a href="{{ bookmark.url }}" target="_blank" onclick="event.stopPropagation();">
-                  {{ bookmark.url }}
-                </a>
-                <p class="file-time">{{ bookmark.created_at }}</p>
-            </div>
-        </div>
-        {% endfor %}
-
-        
-        <!-- Add more .file-box as needed -->
+        {% if bookmarks %}
+            {% for bookmark in bookmarks %}
+                <div class="file-box" onclick="window.location.href='{% url "Dashboard:edit_bookmark" bookmark.slug %}'">
+                    <div class="file-logo">
+                        <img src="{{ bookmark.favicon_url }}" alt="Logo" width="32" height="32">
+                    </div>
+                    <div class="file-details">
+                        <h3>{{ bookmark.title }}</h3>
+                        <a href="{{ bookmark.url }}" target="_blank" onclick="event.stopPropagation();">
+                            {{ bookmark.url }}
+                        </a>
+                        <p class="file-time">{{ bookmark.created_at }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-bookmarks">You haven’t added any bookmarks yet. Click <a href="{% url 'Dashboard:add_bookmark' %}" id="add-bookmark-link">here</a> to add one.</p>
+        {% endif %}
     </div>
-</section>
 
+</section>
 {% endblock %}
