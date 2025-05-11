@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  
+        {% block title %}
+            TabVault
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=rage-mode">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo">
+        <h1>TabVault</h1>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="nav-links">
+        <a href="{% url "Dashboard:dashboard" %}">Dashboard</a>
+        <a href="{% url "main:about" %}">Files</a>
+        <a href="{% url "Dashboard:add_bookmark" %}">Add Bookmark</a> 
+    </div>
+    <a href="{% url 'users:logout' %}">
+        <button>logout</button>
+    </a>
+    {% else %}
+    <div class="nav-links">
+        <a href="{% url "main:home" %}">Home</a>
+        <a href="{% url "main:about" %}">About</a>
+        <a href="{% url "main:contact" %}">Contact</a>
+    </div>
+    <a href="{% url 'users:login' %}">
+        <button>Login</button>
+    </a>
+    {% endif %}
+    
+</nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+</body>
+</html>

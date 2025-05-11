@@ -1,0 +1,20 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+    login
+{% endblock %}
+
+{% block content %}
+    <form action="{% url "users:login" %}" method='POST'>
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        {{ form.username }}
+        <label for="password">Enter Passward:</label>
+        {{ form.password }}
+        <button>Login</button>
+        <a href="{% url 'users:register' %}">
+            <button type="button" class="register-btn">Register</button>
+        </a>
+    </form>
+
+{% endblock %}

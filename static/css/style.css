@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   background: linear-gradient(to right, #c1c1c1, #a2c2e0);
+   color: #2c3e50;
+   font-family: 'Montserrat', sans-serif;
+    display: flex;             /* Use flexbox layout for centering */
+    justify-content: center;   /* Horizontally center the main container */
+    align-items: center;       /* Vertically center the main container (optional) */
+    height:88vh;             /* Make sure the body takes full viewport height */
+    margin: 0;
+
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed;  /* Fix the navbar to the top */
+    top: 0;           /* Ensure it's at the top of the screen */
+    left: 0;          /* Align it to the left edge */
+    width: 100%;      /* Make it span the full width */
+    z-index: 1000;    /* Ensures it stays above other content */
+    display: flex;    /* Flexbox layout */
+    flex-direction: row;
+    justify-content: space-between;  /* Space out items inside the navbar */
+    align-items: center;  /* Vertically centers items */
+    padding: 10px 20px;   /* Optional: Adds space inside the navbar */
+    background: transparent; /* Make the navbar background transparent */
+    box-shadow: none; /* Optional: Removes shadow if you want no effect */
+}
+
+/* Ensure that the content doesn't hide under the navbar */
+body {
+    padding-top: 60px;  /* Adjust based on your navbar height */
+}
+
+/* Navbar links */
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* Navbar link styling */
+.nav-links a {
+    text-decoration: none;
+    color: #000000; /* Optional: Change text color to white for visibility on transparent background */
+    font-size: 16px;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.nav-links a:hover {
+    transform: scale(1.1); /* Pop effect */
+    color: #007bff; /* Change text color on hover */
+}
+
+/* Button styling */
+button {
+    padding: 10px 25px;
+    background-image: linear-gradient(to left, #007bff, #1baaca); /* Your main gradient */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: center;
+    background-size: 200% auto; /* Expands the gradient */
+    background-position: right center; /* Starts the gradient off-screen to the right */
+    transition: background-position 0.4s ease; /* Smooth transition for the gradient */
+}
+
+/* Button hover effect - New complementary gradient */
+button:hover {
+    background-image: linear-gradient(to left, #6a4cfc, #00c6b5); /* New hover gradient */
+    background-position: left center; /* Moves the gradient from right to left on hover */
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 900px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    margin: 0 auto; /* Center horizontally */
+    padding: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels */
+form label {
+    font-weight: 600;
+    color: #111; /* Darker black text */
+}
+
+/* Django form fields */
+form input[type="text"],
+form input[type="password"],
+form input[type="url"]{
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #111;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Button container to align buttons side by side */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Button styling */
+form button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%; /* Full width to fit container */
+    border: none;
+    transition: background 0.3s ease;
+}
+
+/* Login button styling */
+form button[type="submit"] {
+    background-image: linear-gradient(to left, #007bff, #1baaca);
+    color: white;
+}
+
+form button[type="submit"]:hover {
+    background-image: linear-gradient(to left, #6a4cfc, #00c6b5);
+}
+
+/* Register button styling */
+form .register-btn {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%; /* Full width to fit container */
+    border: none;
+    background-image: linear-gradient(to left, #6a4cfc, #00c6b5);
+    color: white;
+    transition: background 0.3s ease;
+}
+
+form .register-btn:hover {
+    background-image: linear-gradient(to left, #007bff, #1baaca);
+}
+
+/* Remove any styles that could affect the buttons */
+form a {
+    text-decoration: none; /* Remove underline from the link */
+    width: 100%; /* Ensure link spans the full width */
+}
+
+/* Dashboard */
+.dashboard-cln{
+    /* border: 2px solid #007bff; */
+    width: 1200px;
+    height: 450px;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    
+}
+/* box */
+.dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Ensures row alignment */
+    max-width: 100%;
+}
+
+.file-box {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(to right, #255991, #00c6b5); /* Static base gradient */
+    background-size: 200% 100%;
+    background-position: left center;
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: background-position 1s ease-in-out, transform 0.3s ease;
+}
+
+.file-box:hover {
+    transform: scale(1.03);
+    background-position: right center; /* Smooth left-to-right gradient shift */
+}
+
+.file-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px; /* Tighter spacing with text */
+}
+
+.file-details h3 {
+    font-size: 16px;
+    margin: 0 0 6px 0;
+}
+
+.file-details a {
+    color: #fff;
+    font-size: 13px;
+    word-break: break-word;
+    margin-bottom: 8px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.file-time {
+    font-size: 12px;
+    color: #e0e0e0;
+}
+form textarea {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #111;
+    background-color: rgba(255, 255, 255, 0.05);
+    resize: vertical; /* allow vertical resize */
+    width: 100%;       /* match other fields */
+    min-height: 80px;  /* initial height */
+    box-sizing: border-box;
+}
+
+/* Error message styling */
+.errorlist {
+    background-color: #ff4d4f;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    list-style-type: none; /* Remove bullet points */
+    width: 100%;
+    box-sizing: border-box;
+}
+
