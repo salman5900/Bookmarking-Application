@@ -6,6 +6,10 @@
 
 {% block content %}
     <h1>Files</h1>
-    <p>Here you can manage your files.</p>
-    <p>the feature is under construction it will be live as soon as possible</p>
+    <form action="{% url 'Dashboard:files' %}" method="POST">
+        {% csrf_token %}
+        <label for="file">File:</label>
+        {{ form.name }}
+        <button type="submit">Upload</button>
+    </form>
 {% endblock %}
