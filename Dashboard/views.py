@@ -37,13 +37,19 @@ def dashboard(request):
 
 
 def acces_each_file(request, slug):
+
     file = get_object_or_404(File, slug=slug, user=request.user)
 
     bookmarks = Bookmark.objects.filter(user=request.user, folder=file).order_by('-created_at')
+    
+    for bm in bookmarks:
+        domain = urlparse(bm.url).netloc
+        bm.favicon_url = f"https://www.google.com/s2/favicons?sz=64&domain={domain}"
 
     return render(request, 'Dashboard/acces_each_file.html', {
         'bookmarks': bookmarks,
         'file': file,
+        
     })
 @login_required
 def edit_bookmark(request, slug):

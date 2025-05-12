@@ -7,7 +7,7 @@
 
     <div class="dashboard">
         <div class="dash1">
-            <h1>{{ file.name }}</h1>
+            <h1>Dashboard</h1>
         </div>
         <div class="file-wrapper">
             <button id="toggleBtn">Toggle Files</button>
@@ -26,8 +26,9 @@
     <div class="dashboard-content">
         <h2>Welcome, {{ user.username }}!</h2>
     </div>
-
+        
     <div class="dashboard-content">
+        <h2>{{ file.name }}</h2>
         {% if bookmarks %}
         <div class="div2">
             {% for bookmark in bookmarks %}
