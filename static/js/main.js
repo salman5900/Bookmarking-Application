@@ -5,7 +5,6 @@ const fileList = document.getElementById('fileList');
 toggleBtn.addEventListener('click', function (e) {
     e.stopPropagation(); // OK here
     fileList.style.display = (fileList.style.display === 'block') ? 'none' : 'block';
-    
 });
 
 // Allow navigation inside fileList
