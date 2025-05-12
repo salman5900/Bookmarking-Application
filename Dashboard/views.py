@@ -1,18 +1,18 @@
-from django.shortcuts import render, redirect
-from .models import Bookmark
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Bookmark,File
 from urllib.parse import urlparse
 from django.contrib.auth.decorators import login_required
 from . import forms
 from collections import defaultdict
 # Create your views here.
 
+
 @login_required
 def dashboard(request):
     user = request.user
-    bookmarks = Bookmark.objects.filter(user=request.user).select_related('folder').order_by('-created_at')
+    bookmarks = Bookmark.objects.filter(user=user).select_related('folder').order_by('-created_at')
 
-
-    others  = []
+    others = []
     grouped_bookmarks = defaultdict(list)
     for bookmark in bookmarks:
         if bookmark.folder:
@@ -20,25 +20,31 @@ def dashboard(request):
         else:
             others.append(bookmark)
 
-    folder_names = list(grouped_bookmarks.keys())
+    folder_names = File.objects.filter(name__in=grouped_bookmarks.keys(), user=user)
 
-
-    
-
-    # Extract logo each url 
+    # Add favicon
     for bm in bookmarks:
         domain = urlparse(bm.url).netloc
         bm.favicon_url = f"https://www.google.com/s2/favicons?sz=64&domain={domain}"
+
     return render(request, 'Dashboard/dashboard.html', {
         'bookmarks': bookmarks,
         'grouped_bookmarks': dict(grouped_bookmarks),
         'folder_names': folder_names,
         'others': others,
-        'user': user
-        })
+        'user': user,
+    })
+
 
 def acces_each_file(request, slug):
-    return render(request, 'Dashboard/acces_each_file.html', {'slug': slug})
+    Folder = Folder.objects.get(slug=slug, user=request.user)
+
+    bookmarks = Bookmark.objects.filter(user=request.user, folder=Folder).order_by('-created_at')
+
+    return render(request, 'Dashboard/acces_each_file.html', {
+        'bookmarks': bookmarks,
+        'file': Folder,
+    })
 
 @login_required
 def edit_bookmark(request, slug):
