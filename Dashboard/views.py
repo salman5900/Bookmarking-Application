@@ -37,15 +37,14 @@ def dashboard(request):
 
 
 def acces_each_file(request, slug):
-    Folder = Folder.objects.get(slug=slug, user=request.user)
+    file = get_object_or_404(File, slug=slug, user=request.user)
 
-    bookmarks = Bookmark.objects.filter(user=request.user, folder=Folder).order_by('-created_at')
+    bookmarks = Bookmark.objects.filter(user=request.user, folder=file).order_by('-created_at')
 
     return render(request, 'Dashboard/acces_each_file.html', {
         'bookmarks': bookmarks,
-        'file': Folder,
+        'file': file,
     })
-
 @login_required
 def edit_bookmark(request, slug):
     bookmark = Bookmark.objects.get(slug=slug)
