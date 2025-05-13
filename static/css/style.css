@@ -351,3 +351,24 @@ form textarea {
 .file-list li:hover {
   background-color: #e6f0ff;
 }
+
+.div-del {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.div-del .delete-btn {
+    font-size: 18px;
+    color: #dc3545;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.div-del .delete-btn:hover {
+    color: #b02a37;
+    transform: scale(1.2);
+    cursor: pointer;
+}

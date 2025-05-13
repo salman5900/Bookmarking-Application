@@ -50,6 +50,7 @@ def other_files(request):
 def acces_each_file(request, slug):
 
     file = get_object_or_404(File, slug=slug, user=request.user)
+    toggle_files = File.objects.filter(user=request.user).exclude(slug=slug)
 
     bookmarks = Bookmark.objects.filter(user=request.user, folder=file).order_by('-created_at')
     
@@ -60,8 +61,14 @@ def acces_each_file(request, slug):
     return render(request, 'Dashboard/acces_each_file.html', {
         'bookmarks': bookmarks,
         'file': file,
+        'toggle_files': toggle_files,
         
     })
+
+def delete_file(request, slug):
+    file = get_object_or_404(File, slug=slug, user=request.user)
+    file.delete()
+    return redirect('Dashboard:dashboard')
 
 @login_required
 def edit_bookmark(request, slug):
