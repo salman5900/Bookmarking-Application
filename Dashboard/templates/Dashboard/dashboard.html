@@ -12,14 +12,16 @@
         <div class="file-wrapper">
         <button id="toggleBtn">Toggle Files</button>
         <ul class="file-list" id="fileList">
-            {% for folder in folder_names|add:others %}
+            {% for folder in folder_names %}
+            {% if folder.slug %}
             <li>
-                <a href="#" style="color: inherit; text-decoration: none;">{{  folder }}</a>
+                <a href="{% url 'Dashboard:acces_each_file' folder.slug %}" style="color: inherit; text-decoration: none;">{{ folder }}</a>
             </li>
+        {% endif %}
             {% endfor %}
         {% if others %}
             <li>
-                <a href="#" style="color: inherit; text-decoration: none;">Others</a>
+                <a href="{% url 'Dashboard:other_files' %}" style="color: inherit; text-decoration: none;">Others</a>
             </li>
         {% endif %}
         </ul>
