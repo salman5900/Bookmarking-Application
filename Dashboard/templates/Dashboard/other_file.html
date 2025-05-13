@@ -1,0 +1,60 @@
+{% extends "main/layout.html" %}
+
+{% block title %}
+    Dashboard - Others
+{% endblock %}
+
+{% block content %}
+<section class="dashboard-cln">
+
+    <div class="dashboard">
+        <div class="dash1">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="file-wrapper">
+            <button id="toggleBtn">Toggle Files</button>
+            <ul class="file-list" id="fileList">
+                <li>
+                    <a href="{% url 'Dashboard:dashboard' %}" style="color: inherit; text-decoration: none;">All</a>
+                </li>
+                {% for f in request.user.files.all %}
+                <li>
+                    <a href="{% url 'Dashboard:acces_each_file' f.slug %}" style="color: inherit; text-decoration: none;">
+                        {{ f.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+        <h2>Welcome, {{ user.username }}!</h2>
+    </div>
+        
+    <div class="dashboard-content">
+        <h2>Others</h2>
+        {% if bookmarks %}
+        <div class="div2">
+            {% for bm in bookmarks %}
+            <div class="file-box" onclick="window.location.href='{% url 'Dashboard:edit_bookmark' bm.slug %}'">
+                <div class="file-logo">
+                    <img src="{{ bm.favicon_url }}" alt="Logo" width="32" height="32">
+                </div>
+                <div class="file-details"> 
+                    <h3>{{ bm.title }}</h3> 
+                    <a href="{{ bm.url }}" target="_blank" onclick="event.stopPropagation();"> 
+                        {{ bm.url }}
+                    </a>
+                    <p class="file-time">{{ bm.created_at }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No bookmarks in this file yet.</p>
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

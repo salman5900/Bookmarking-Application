@@ -35,6 +35,17 @@ def dashboard(request):
         'user': user,
     })
 
+def other_files(request): 
+    bookmarks = Bookmark.objects.filter(user=request.user, folder=None).order_by('-created_at') 
+
+    for bm in bookmarks:
+        domain = urlparse(bm.url).netloc
+        bm.favicon_url = f"https://www.google.com/s2/favicons?sz=64&domain={domain}"
+
+    return render(request, 'Dashboard/other_file.html', {
+        'bookmarks': bookmarks,
+        'others': bookmarks,  # Since all bookmarks here are 'other' ones
+    })
 
 def acces_each_file(request, slug):
 
@@ -51,6 +62,7 @@ def acces_each_file(request, slug):
         'file': file,
         
     })
+
 @login_required
 def edit_bookmark(request, slug):
     bookmark = Bookmark.objects.get(slug=slug)
